@@ -8,6 +8,7 @@ const categories = ['music', 'sciencenature', 'history', 'artliterature', 'langu
 
 const GameBoard = () => {
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [score, setScore] = useState(0);
 
   const handleCategoryClick = (category) => {
     fetchTriviaForCategory(category)
@@ -30,6 +31,7 @@ const GameBoard = () => {
   return (
     <div>
       <h1>Trivia Game</h1>
+    <p>Score: {score}</p>
       <div className="button-container">
         {categories.map((category) => (
           <div key={category} onClick={() => handleCategoryClick(category)}>
