@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import '../index.css';
 import fetchTriviaForCategory from '../utils/fetchTriviaForCategory';
@@ -28,10 +27,16 @@ const GameBoard = () => {
       });
   };
 
+  const handleAnswerReveal = () => {
+    // Increment the score when revealing the answer
+    setScore((prevScore) => prevScore + 1);
+    setSelectedCategory({ ...selectedCategory, isAnswerVisible: true });
+  };
+
   return (
     <div>
       <h1>Trivia Game</h1>
-    <p>Score: {score}</p>
+      <p>Score: {score}</p>
       <div className="button-container">
         {categories.map((category) => (
           <div key={category} onClick={() => handleCategoryClick(category)}>
@@ -49,7 +54,7 @@ const GameBoard = () => {
           </div>
           {!selectedCategory.isAnswerVisible && (
             <div><br></br>
-              <button onClick={() => setSelectedCategory({ ...selectedCategory, isAnswerVisible: true })}>
+              <button onClick={handleAnswerReveal}>
                 Reveal Answer
               </button>
             </div>
